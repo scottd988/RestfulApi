@@ -4,7 +4,13 @@ var router = express.Router();
 
 // *** GET all shows *** //
 router.get('/shows', function(req, res, next) {
-  res.send('send shows back');
+  queries.getAll()
+  .then(function(shows) {
+    res.status(200).json(shows);
+  })
+  .catch(function(error) {
+    next(error);
+  });
 });
 
 
